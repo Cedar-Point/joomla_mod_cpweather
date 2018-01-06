@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.5" client="site" method="upgrade">
+    <name>CP Weather</name>
+    <author>Dylan Bickerstaff</author>
+    <creationDate>January 2018</creationDate>
+    <version>0.0.1</version>
+    <description>Displays the weather from Weather Underground</description>
+    <files>
+        <folder>src</folder>
+        <filename module="mod_cpweather">mod_cpweather.php</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="wu_api_key"
+                    type="text"
+                    label="Weather Underground API Key"
+                    description="Weather Underground API Key"
+				/>
+				<field
+                    name="wu_location"
+                    type="text"
+					default="OH/Sandusky"
+                    label="Weather Underground Location"
+                    description="E.G. : OH/Sandusky"
+				/>
+				<field
+                    name="cache_timeout"
+                    type="number"
+					default="346"
+                    label="Cache Timeout (Seconds)"
+                    description="How long should CP Weather wait before refreshing the cached data from Weather Underground in seconds?"
+				/>
+				<field
+					name="custom_css"
+					type="textarea"
+					label="Custom CSS"
+					description="Inject custom CSS into the Quick Links"
+					default=""
+				/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
