@@ -1,0 +1,125 @@
+@font-face {
+    font-family:Weather;
+    src:url('module.woff');
+}
+.wico, .wicona {
+    font-family:Weather;
+    display:inline-block;
+}
+.wico::after {
+    content:'\f07b';
+}
+.wico.chanceflurries::after {
+    content:'\f065';
+}
+.wico.chancerain::after {
+    content:'\f009';
+}
+.wico.chancesleet::after {
+    content:'\f0b2';
+}
+.wico.chancesnow::after {
+    content:'\f00a';
+}
+.wico.chancetstorms::after {
+    content:'\f00e';
+}
+.wico.clear::after {
+    content:'\f00d';
+}
+.wico.cloudy::after {
+    content:'\f002';
+}
+.wico.flurries::after {
+    content:'\f065';
+}
+.wico.fog::after {
+    content:'\f003';
+}
+.wico.hazy::after {
+    content:'\f0b6';
+}
+.wico.mostlycloudy::after {
+    content:'\f002';
+}
+.wico.mostlysunny::after {
+    content:'\f00c';
+}
+.wico.partlycloudy::after {
+    content:'\f00c';
+}
+.wico.partlysunny::after {
+    content:'\f002';
+}
+.wico.sleet::after {
+    content:'\f0b2';
+}
+.wico.rain::after {
+    content:'\f008';
+}
+.wico.snow::after {
+    content:'\f00a';
+}
+.wico.sunny::after {
+    content:'\f00d';
+}
+.wico.tstorms::after {
+    content:'\f010';
+}
+.wico.nt_chanceflurries::after {
+    content:'\f067';
+}
+.wico.nt_chancerain::after {
+    content:'\f029';
+}
+.wico.nt_chancesleet::after {
+    content:'\f0b4';
+}
+.wico.nt_chancesnow::after {
+    content:'\f02a';
+}
+.wico.nt_chancetstorms::after {
+    content:'\f02c';
+}
+.wico.nt_clear::after {
+    content:'\f02e';
+}
+.wico.nt_cloudy::after {
+    content:'\f086';
+}
+.wico.nt_flurries::after {
+    content:'\f067';
+}
+.wico.nt_fog::after {
+    content:'\f04a';
+}
+.wico.nt_hazy::after {
+    content:'\f04a';
+}
+.wico.nt_mostlycloudy::after {
+    content:'\f086';
+}
+.wico.nt_mostlysunny::after {
+    content:'\f081';
+}
+.wico.nt_partlycloudy::after {
+    content:'\f081';
+}
+.wico.nt_partlysunny::after {
+    content:'\f086';
+}
+.wico.nt_sleet::after {
+    content:'\f0b4';
+}
+.wico.nt_rain::after {
+    content:'\f028';
+}
+.wico.nt_snow::after {
+    content:'\f02a';
+}
+.wico.nt_sunny::after {
+    content:'\f02e';
+}
+.wico.nt_tstorms::after {
+    content:'\f02d';
+}
