@@ -33,6 +33,7 @@ Wind Chill: `+weath['windchill_string']+`
 				$('#mod_cpweather .wind_direction').html('Wind '+weath['wind_dir']+' at '+weath['wind_mph']+'mph');
 				$('#mod_cpweather .mod, #mod_cpweather .loading').toggle();
 			} catch(e) {
+				console.error(e);
 				setTimeout(refresh, 3000);
 			}
 		};

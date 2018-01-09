@@ -2,6 +2,8 @@
 defined('_JEXEC') or die;
 $settings = json_decode(JModuleHelper::getModule('mod_cpweather')->params, true);
 if(isset($_POST['mod_cpweather'])) {
+	ob_clean();
+	ob_start();
 	set_time_limit(3);
 	require(__DIR__.'/src/shaledatamanager.lib.php');
 	//Load weather from cache
@@ -12,7 +14,6 @@ if(isset($_POST['mod_cpweather'])) {
 			//Echo cache
 			echo $data['weather'];
 		} else { //Else grab new data from Weather Underground
-			echo $settings['wu_api_key'];
 			$apiUrl = 'http://api.wunderground.com/api/'.$settings['wu_api_key'].'/conditions/q/'.$settings['wu_location'].'.json';
 			//Grab json
 			$json = json_decode(file_get_contents($apiUrl))->current_observation;
