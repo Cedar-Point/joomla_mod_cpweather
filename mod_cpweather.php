@@ -25,7 +25,7 @@ if(isset($_POST['mod_cpweather'])) {
 				if(isset($data['weather']) && !empty($data['weather'])) {
 					echo $data['weather'];
 				} else {
-					echo 'Empty response from WeatherUnderground. No valid data in cache to show.';
+					echo 'Cannot serve old cache, and invalid or empty response from Weather Underground: '.$response.'.';
 				}
 			}
 		}
