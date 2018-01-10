@@ -3,20 +3,41 @@
 	$(document).ready(function() {
 		function refresh() {
 			if(typeof localStorage.weather == 'string' && localStorage.weather !== '' && typeof localStorage.weather_time == 'string' && localStorage.weather_time > Math.round((new Date()).getTime() / 1000) - 180) {
-				render(localStorage.weather);
+				try {
+					var json = JSON.decode(localStorage.weather);
+					var validJson = true;
+				} catch(e) {
+					var validJson = false;
+				}
+				if(validJson) {
+					render(json);
+				} else {
+					delete localStorage.weather;
+					delete localStorage.weather_time;
+					setTimeout(refresh, 3000);
+				}
 			} else {
 				$.post('./', {mod_cpweather:''}, function(data) {
-					render(data);
-					localStorage.setItem('weather', data);
-					localStorage.setItem('weather_time', Math.round((new Date()).getTime() / 1000));
+					try {
+						var json = JSON.decode(data);
+						var validJson = true;
+					} catch(e) {
+						var validJson = false;
+					}
+					if(validJson && typeof json['local_time_rfc822'] == 'string') {
+						localStorage.setItem('weather', data);
+						localStorage.setItem('weather_time', Math.round((new Date()).getTime() / 1000));
+						render(json);
+					} else {
+						 $('#mod_cpweather .loading').hide();
+					}
 				}).fail(function() {
 					setTimeout(refresh, 3000);
 				});
 			}
 		};
-		function render(data) {
+		function render(weath) {
 			try {
-				var weath = JSON.decode(data);
 $('#mod_cpweather').attr('title', `
 Last updated: `+weath['local_time_rfc822']+`
 UV Index: `+weath.UV+`
@@ -31,12 +52,16 @@ Wind Chill: `+weath['windchill_string']+`
 				$('#mod_cpweather .weather_temp').html(weath.weather+' '+weath['temp_f']+'&deg;');
 				$('#mod_cpweather .feels_like').html('Feels like '+weath['feelslike_f']+'&deg;');
 				$('#mod_cpweather .wind_direction').html('Wind '+weath['wind_dir']+' at '+weath['wind_mph']+'mph');
-				$('#mod_cpweather .mod, #mod_cpweather .loading').toggle();
+				$('#mod_cpweather .mod').show();
+				$('#mod_cpweather .loading').hide();
 			} catch(e) {
 				console.error(e);
 				setTimeout(refresh, 3000);
 			}
 		};
+		setInterval(function() {
+			refresh();
+		}, 300000);
 		refresh();
 	});
 })();

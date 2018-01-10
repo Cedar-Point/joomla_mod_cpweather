@@ -4,26 +4,30 @@ $settings = json_decode(JModuleHelper::getModule('mod_cpweather')->params, true)
 if(isset($_POST['mod_cpweather'])) {
 	ob_clean();
 	ob_start();
-	set_time_limit(3);
 	require(__DIR__.'/src/shaledatamanager.lib.php');
-	//Load weather from cache
 	if(!empty($settings['wu_api_key']) && !empty($settings['wu_location'])) {
 		$data = loadDB('cache');
-		//If cache is not 346 seconds old use the cache
 		if(isset($data['time']) && !empty($data['time']) && $data['time'] > time() - 346) {
-			//Echo cache
 			echo $data['weather'];
-		} else { //Else grab new data from Weather Underground
+		} else {
 			$apiUrl = 'http://api.wunderground.com/api/'.$settings['wu_api_key'].'/conditions/q/'.$settings['wu_location'].'.json';
-			//Grab json
-			$json = json_decode(file_get_contents($apiUrl))->current_observation;
-			//Fix the icons because weather underground cant do thing right.
-			$json->icon = str_replace('http://icons.wxug.com/i/c/k/','',str_replace('.gif','',$json->icon_url));
-			$weather = json_encode($json);
-			//Update cache
-			putDB(array('time'=>time(), 'weather'=>$weather), 'cache');
-			//Echo json
-			echo $weather;
+			ini_set('default_socket_timeout', 3);
+			$response = @file_get_contents($apiUrl);
+			if(!empty($response)) {
+				$json = json_decode($response);
+				if(isset($json->current_observation) && !empty($json->current_observation)) {
+					$json->icon = str_replace('http://icons.wxug.com/i/c/k/','',str_replace('.gif','',$json->icon_url));
+					$weather = json_encode($json->current_observation);
+					putDB(array('time'=>time(), 'weather'=>$weather), 'cache');
+					echo $weather;
+				}
+			} else {
+				if(isset($data['weather']) && !empty($data['weather'])) {
+					echo $data['weather'];
+				} else {
+					echo 'Empty response from WeatherUnderground. No valid data in cache to show.';
+				}
+			}
 		}
 	}
 	exit;
