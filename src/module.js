@@ -49,8 +49,8 @@ Wind Chill: `+weath['windchill_string']+`
 `);
 				$('#mod_cpweather a').attr('href', weath['forecast_url']);
 				$('#mod_cpweather .wico').addClass(weath.icon);
-				$('#mod_cpweather .weather_temp').html(weath.weather+' '+weath['temp_f']+'&deg;');
-				$('#mod_cpweather .feels_like').html('Feels like '+weath['feelslike_f']+'&deg;');
+				$('#mod_cpweather .weather_temp').html(weath.weather+' '+Math.round(weath['temp_f'])+'&deg;');
+				$('#mod_cpweather .feels_like').html('Feels like '+Math.round(weath['feelslike_f'])+'&deg;');
 				$('#mod_cpweather .wind_direction').html('Wind '+weath['wind_dir']+' at '+weath['wind_mph']+'mph');
 				$('#mod_cpweather .mod').show();
 				$('#mod_cpweather .loading').hide();
