@@ -38,15 +38,15 @@
 		};
 		function render(weath) {
 			try {
-$('#mod_cpweather').attr('title', `
-Last updated: `+weath['local_time_rfc822']+`
-UV Index: `+weath.UV+`
-Humidity: `+weath['relative_humidity']+`
-Pressure: `+weath['pressure_mb']+`mb
-Visibility: `+weath['visibility_mi']+`mi
-Heat Index: `+weath['heat_index_string']+`
-Wind Chill: `+weath['windchill_string']+`
-`);
+$('#mod_cpweather').attr('title',
+'Last updated: '+weath['local_time_rfc822']+
+'\nUV Index: '+weath.UV+
+'\nHumidity: '+weath['relative_humidity']+
+'\nPressure: '+weath['pressure_mb']+'mb'+
+'\nVisibility: '+weath['visibility_mi']+'mi'+
+'\nHeat Index: '+weath['heat_index_string']+
+'Wind Chill: '+weath['windchill_string']
+);
 				$('#mod_cpweather a').attr('href', weath['forecast_url']);
 				$('#mod_cpweather .wico').addClass(weath.icon);
 				$('#mod_cpweather .weather_temp').html(weath.weather+' '+Math.round(weath['temp_f'])+'&deg;');
