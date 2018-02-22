@@ -45,7 +45,7 @@ $('#mod_cpweather').attr('title',
 '\nPressure: '+weath['pressure_mb']+'mb'+
 '\nVisibility: '+weath['visibility_mi']+'mi'+
 '\nHeat Index: '+weath['heat_index_string']+
-'Wind Chill: '+weath['windchill_string']
+'\nWind Chill: '+weath['windchill_string']
 );
 				$('#mod_cpweather a').attr('href', weath['forecast_url']);
 				$('#mod_cpweather .wico').addClass(weath.icon);
