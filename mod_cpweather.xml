@@ -2,9 +2,9 @@
 <extension type="module" version="3.5" client="site" method="upgrade">
     <name>CP Weather</name>
     <author>Dylan Bickerstaff</author>
-    <creationDate>January 2018</creationDate>
-    <version>0.0.1</version>
-    <description>Displays the weather from Weather Underground</description>
+    <creationDate>May 2019</creationDate>
+    <version>0.0.2</version>
+    <description>Displays the weather from Dark Sky API</description>
     <files>
         <folder>src</folder>
         <filename module="mod_cpweather">mod_cpweather.php</filename>
@@ -15,28 +15,28 @@
                 <field
                     name="wu_api_key"
                     type="text"
-                    label="Weather Underground API Key"
-                    description="Weather Underground API Key"
+                    label="Dark Sky API Key"
+                    description="Dark Sky API Key"
 				/>
 				<field
                     name="wu_location"
                     type="text"
-					default="OH/Sandusky"
-                    label="Weather Underground Location"
-                    description="E.G. : OH/Sandusky"
+					default="41.4822,82.6835"
+                    label="Dark Sky Coordinate"
+                    description="E.G. : 41.4822,82.6835"
 				/>
 				<field
                     name="cache_timeout"
                     type="number"
-					default="346"
+					default="90"
                     label="Cache Timeout (Seconds)"
-                    description="How long should CP Weather wait before refreshing the cached data from Weather Underground in seconds?"
+                    description="How long should CP Weather wait before refreshing the cached data from Dark Sky API in seconds?"
 				/>
 				<field
 					name="custom_css"
 					type="textarea"
 					label="Custom CSS"
-					description="Inject custom CSS into the Quick Links"
+					description="Inject custom CSS into CP Weather"
 					default=""
 				/>
             </fieldset>
