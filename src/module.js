@@ -24,7 +24,7 @@
 					} catch(e) {
 						var validJson = false;
 					}
-					if(validJson && typeof json['local_time_rfc822'] == 'string') {
+					if(validJson && typeof json['currently'] == 'object') {
 						localStorage.setItem('weather', data);
 						localStorage.setItem('weather_time', Math.round((new Date()).getTime() / 1000));
 						render(json);
@@ -38,20 +38,23 @@
 		};
 		function render(weath) {
 			try {
+				var current = weath.currently;
 $('#mod_cpweather').attr('title',
-'Last updated: '+weath['local_time_rfc822']+
-'\nUV Index: '+weath.UV+
-'\nHumidity: '+weath['relative_humidity']+
-'\nPressure: '+weath['pressure_mb']+'mb'+
-'\nVisibility: '+weath['visibility_mi']+'mi'+
-'\nHeat Index: '+weath['heat_index_string']+
-'\nWind Chill: '+weath['windchill_string']
+'Last Updated: '+new Date(current.time * 1000)+
+'\nUV Index: '+current.uvIndex+
+'\nHumidity: '+current.humidity+
+'\nPressure: '+current.pressure+'mb'+
+'\nVisibility: '+current.visibility+'mi'+
+'\nWind Bearing: '+current.windBearing+'deg'+
+'\nWind Gusts: '+current.windGust+'mph'+
+'\nPrecipitation Probability: '+current.precipProbability+'%'+
+'\nNearest Storm: '+current.nearestStormDistance+'mi'
 );
-				$('#mod_cpweather a').attr('href', weath['forecast_url']);
-				$('#mod_cpweather .wico').addClass(weath.icon);
-				$('#mod_cpweather .weather_temp').html(weath.weather+' '+Math.round(weath['temp_f'])+'&deg;');
-				$('#mod_cpweather .feels_like').html('Feels like '+Math.round(weath['feelslike_f'])+'&deg;');
-				$('#mod_cpweather .wind_direction').html('Wind '+weath['wind_dir']+' at '+weath['wind_mph']+'mph');
+				$('#mod_cpweather a').attr('href', 'https://darksky.net/forecast/'+weath.latitude+','+weath.longitude);
+				$('#mod_cpweather .wico').addClass(current.icon);
+				$('#mod_cpweather .weather_temp').html(current.summary+' '+Math.round(current.temperature)+'&deg;');
+				$('#mod_cpweather .feels_like').html('Feels like '+Math.round(current.apparentTemperature)+'&deg;');
+				$('#mod_cpweather .wind_direction').html('Wind speed '+current.windSpeed+'mph');
 				$('#mod_cpweather .mod').show();
 				$('#mod_cpweather .loading').hide();
 			} catch(e) {

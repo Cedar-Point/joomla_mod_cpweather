@@ -9,6 +9,9 @@
 .wico::after {
     content:'\f07b';
 }
+.wico.wind::after {
+    content:'\f085';
+}
 .wico.chanceflurries::after {
     content:'\f065';
 }
@@ -24,7 +27,7 @@
 .wico.chancetstorms::after {
     content:'\f00e';
 }
-.wico.clear::after {
+.wico.clear-day::after {
     content:'\f00d';
 }
 .wico.cloudy::after {
@@ -45,7 +48,7 @@
 .wico.mostlysunny::after {
     content:'\f00c';
 }
-.wico.partlycloudy::after {
+.wico.partly-cloudy-day::after {
     content:'\f00c';
 }
 .wico.partlysunny::after {
@@ -81,7 +84,7 @@
 .wico.nt_chancetstorms::after {
     content:'\f02c';
 }
-.wico.nt_clear::after {
+.wico.clear-night::after {
     content:'\f02e';
 }
 .wico.nt_cloudy::after {
@@ -102,7 +105,7 @@
 .wico.nt_mostlysunny::after {
     content:'\f081';
 }
-.wico.nt_partlycloudy::after {
+.wico.partly-cloudy-night::after {
     content:'\f081';
 }
 .wico.nt_partlysunny::after {

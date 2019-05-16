@@ -23,7 +23,7 @@
                     type="text"
 					default="41.4822,82.6835"
                     label="Dark Sky Coordinate"
-                    description="E.G. : 41.4822,82.6835"
+                    description="E.G. : 41.478094,-82.678911"
 				/>
 				<field
                     name="cache_timeout"
