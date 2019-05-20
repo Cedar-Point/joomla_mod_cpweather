@@ -54,7 +54,7 @@ $('#mod_cpweather').attr('title',
 				$('#mod_cpweather .wico').addClass(current.icon);
 				$('#mod_cpweather .weather_temp').html(current.summary+' '+Math.round(current.temperature)+'&deg;');
 				$('#mod_cpweather .feels_like').html('Feels like '+Math.round(current.apparentTemperature)+'&deg;');
-				$('#mod_cpweather .wind_direction').html('Wind speed '+current.windSpeed+'mph');
+				$('#mod_cpweather .wind_direction').html('Wind speed '+Math.round(current.windSpeed)+'mph');
 				$('#mod_cpweather .mod').show();
 				$('#mod_cpweather .loading').hide();
 			} catch(e) {
