@@ -1,10 +1,10 @@
 <?php
 defined('_JEXEC') or die;
 $settings = json_decode(JModuleHelper::getModule('mod_cpweather')->params, true);
-ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 if(isset($_POST['mod_cpweather'])) {
-    ob_clean();
-    ob_start();
+    while(ob_get_level() !== 0) {
+        ob_end_clean();
+    }
     require(__DIR__.'/src/shaledatamanager.lib.php');
     if(!empty($settings['wu_api_key']) && !empty($settings['wu_location'])) {
         $data = loadDB('cache');
